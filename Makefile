@@ -1,10 +1,10 @@
 CC     := gcc
-CFLAGS := -O3 -std=gnu99
+CFLAGS := -O3 -std=gnu99 -Wall -Wextra
 
-all: tiny
+all: clean tiny
 
 tiny:
 	$(CC) tiny.c $(CFLAGS) -o ./tiny
 
 clean:
-	rm ./tiny
+	rm -fr ./tiny
