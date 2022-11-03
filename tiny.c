@@ -9,11 +9,15 @@ int main(int argc, char** argv){
   sz = ftell(fp); // What's the position here?
 
   unsigned char f[sz];
-  fread(f, sizeof(f), 1, fp);
+  int k = fread(f, sizeof(f), 1, fp);
+  if(k == 0) return 1;
 
   for(unsigned long i = 0; i < sz; i++) {
-    if(i % 8 == 0) printf("\n");
-    else {
+    if(i % 8 == 0){
+      printf("\t | ");
+      for(unsigned long k = i; k != (i-8); k--) printf("%c", f[k]);
+      printf("\n");
+    } else {
       if(f[i] < 0x10) printf("0%x ", f[i]);
       else printf("%x ", f[i]);
     }
